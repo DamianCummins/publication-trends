@@ -16,11 +16,32 @@ export default class EUtilsClient {
    * @param {Number} reldate
    * @param {String} datetype
    * @param {Number} retmax
+   * @param {String} rettype
    * @param {String} retmode
    */
-  queryESearch = async (db, term, reldate, datetype = 'pdat', retmax = 100000, retmode = 'json') => {
-    const result = await fetch(`https://${this.host}${this.basePath}/esearch.fcgi`
-      + `?db=${db}&term=${term}&reldate=${reldate}&datetype=${datetype}&retmax=${retmax}&retmode=${retmode}`);
+  queryESearch = async (db, term, reldate, datetype = 'pdat', retmax, rettype, retmode = 'json') => {
+    const url = new URL(`https://${this.host}${this.basePath}/esearch.fcgi`);
+    const queryParams = {
+      db,
+      term,
+      reldate,
+      datetype,
+      retmode,
+      rettype,
+    };
+
+    // Only pass retmax if rettype is not set
+    if (!rettype) {
+      queryParams.retmax = retmax;
+    }
+
+    Object.keys(queryParams).forEach((key) => {
+      if (queryParams[key]) {
+        url.searchParams.append(key, queryParams[key]);
+      }
+    });
+
+    const result = await fetch(url.toString());
     return result.json();
   }
 
