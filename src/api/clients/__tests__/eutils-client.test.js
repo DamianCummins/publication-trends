@@ -2,7 +2,6 @@ import EUtilsClient from '../eutils-client';
 
 let eUtilsClient;
 describe('eutils-client', () => {
-
   beforeAll(() => {
     eUtilsClient = new EUtilsClient();
   });

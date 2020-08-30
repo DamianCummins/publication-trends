@@ -40,8 +40,13 @@ export default class EUtilsClient {
         url.searchParams.append(key, queryParams[key]);
       }
     });
-
-    const result = await fetch(url.toString());
+    let result;
+    try {
+      result = await fetch(url.toString().replace(/%2B/g, '+'));
+    } catch (err) {
+      console.error(err);
+      throw new Error('Failed to fetch data');
+    }
     return result.json();
   }
 
@@ -51,8 +56,14 @@ export default class EUtilsClient {
    * @param {Number} id
    */
   queryEFetch = async (db, id) => {
-    const result = await fetch(`https://${this.host}${this.basePath}/efetch.fcgi`
-      + `?db=${db}&id=${id}&retmode=xml`);
+    let result;
+    try {
+      result = await fetch(`https://${this.host}${this.basePath}/efetch.fcgi`
+        + `?db=${db}&id=${id}&retmode=xml`);
+    } catch (err) {
+      console.error(err);
+      throw new Error('Failed to fetch data');
+    }
 
     const xml = await result.text();
     const json = convert.xml2json(xml, { compact: true, spaces: 4 });
