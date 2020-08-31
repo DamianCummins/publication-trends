@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { select } from 'd3-selection';
 import { max } from 'd3-array';
 import { scaleLinear, scaleBand } from 'd3-scale';
@@ -8,14 +8,38 @@ import { axisLeft, axisBottom } from 'd3-axis';
 const margin = {
   top: 60, right: 60, bottom: 60, left: 60,
 };
-const width = 800 - margin.left - margin.right;
-const height = 400 - margin.top - margin.bottom;
+
+const getWindowDimensions = () => {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    windowWidth: width,
+    windowHeight: height,
+  };
+};
+
+function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
+}
 
 const color = ['#f05440', '#d5433d', '#b33535', '#283250'];
 
 const BarChart = ({ data }) => {
   const d3svg = useRef(null);
-
+  const { windowHeight, windowWidth } = useWindowDimensions();
+  const width = (windowWidth <= 1000 ? windowWidth : 1000) - margin.left - margin.right;
+  const height = 400 - margin.top - margin.bottom;
+  
   useEffect(() => {
     select(d3svg.current).selectAll('*').remove();
     if (data && d3svg.current) {
