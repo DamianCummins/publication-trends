@@ -9,7 +9,7 @@ const margin = {
   top: 60, right: 60, bottom: 60, left: 60,
 };
 const width = 800 - margin.left - margin.right;
-const height = 600 - margin.top - margin.bottom;
+const height = 400 - margin.top - margin.bottom;
 
 const color = ['#f05440', '#d5433d', '#b33535', '#283250'];
 
