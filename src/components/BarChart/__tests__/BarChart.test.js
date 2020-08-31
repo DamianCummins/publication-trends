@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import BarChart from '../BarChart';
+import BarChart from '..';
 
 test('renders Bar Chart', () => {
   const utils = render(<BarChart data={[{ year: 2020, count: 10 }, { year: 2019, count: 50 }]} />);

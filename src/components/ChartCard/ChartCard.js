@@ -4,9 +4,11 @@ import { Tile } from 'carbon-components-react';
 const ChartCard = (props) => {
   const { title, children } = props;
   return (
-    <Tile>
+    <Tile className="chart-card">
       <h3>{title}</h3>
-      {children}
+      <div className="chart">
+        {children}
+      </div>
     </Tile>
   );
 };

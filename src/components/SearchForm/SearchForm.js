@@ -52,7 +52,7 @@ const SearchForm = (props) => {
   };
 
   return (
-    <Form>
+    <Form className="search-form">
       <TextInput
         id="trend-search"
         labelText="Search Term"
@@ -61,6 +61,8 @@ const SearchForm = (props) => {
       />
       <Select
         id="date-range-select"
+        className="date-range-select"
+        labelText="Date Range"
         onChange={(event) => setDateRange(event.target.value)}
       >
         <SelectItem value="5-years" text="Past 5 years" />

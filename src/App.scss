@@ -31,6 +31,13 @@
   color: #61dafb;
 }
 
+.bx-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

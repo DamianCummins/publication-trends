@@ -1,0 +1,19 @@
+@import '../../components/SearchForm/SearchForm.scss';
+@import '../../components/ChartCard/ChartCard.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    max-width: 1000px;
+}
+
+.search-form {
+    width: 100%;
+} 
+
+.chart-card {
+    width: 100%;
+}

@@ -69,7 +69,7 @@ const BarChart = ({ data }) => {
   return (
     <svg
       className="bar-chart-container"
-      width={width + margin.left + margin.right}
+      width={width + margin.top + margin.bottom}
       height={height + margin.top + margin.bottom}
       role="img"
       ref={d3svg}
