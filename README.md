@@ -2,6 +2,8 @@
 
 [http://publication-trends.eu-gb.mybluemix.net/](http://publication-trends.eu-gb.mybluemix.net/)
 
+![screenshot](https://github.com/DamianCummins/publication-trends/blob/master/images/publication_trends.png)
+
 Use this tool to visualise year-by-year trends of the appearance of disease terms in research publications.
 
 Data sourced from [NCBI](https://www.ncbi.nlm.nih.gov/).
