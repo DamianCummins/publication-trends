@@ -1,5 +1,6 @@
 export const defaultState = {
   trendData: [],
+  isLoading: false,
 };
 
 export default function formReducer(state, action) {
@@ -8,6 +9,17 @@ export default function formReducer(state, action) {
       return {
         ...state,
         trendData: action.trendData,
+      };
+    }
+    case 'setIsLoading': {
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      };
+    }
+    default: {
+      return {
+        ...state,
       };
     }
   }

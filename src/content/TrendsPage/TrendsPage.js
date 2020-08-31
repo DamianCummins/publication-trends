@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
+import { Loading } from 'carbon-components-react';
 import SearchForm from '../../components/SearchForm';
 import ChartCard from '../../components/ChartCard';
-import TimeSeriesChart from '../../components/TimeSeriesChart';
 import BarChart from '../../components/BarChart';
 import reducer, { defaultState } from '../../reducers';
 
@@ -13,8 +13,9 @@ const TrendsPage = () => {
     <AppContext.Provider value={{ state, dispatch }}>
       <SearchForm dispatch={dispatch} />
       <ChartCard title="Trends per Year">
-      {state.trendData
-        && <BarChart data={state.trendData} size={[500, 500]} />}
+        {state.isLoading && <Loading withOverlay={false} />}
+        {state.trendData && state.trendData.length > 0
+            && <BarChart data={state.trendData} size={[500, 800]} />}
       </ChartCard>
     </AppContext.Provider>
   );

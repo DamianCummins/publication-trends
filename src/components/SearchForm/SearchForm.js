@@ -30,6 +30,7 @@ const SearchForm = (props) => {
 
   const fetchTrendData = async (event) => {
     if (searchTerm) {
+      dispatch(actions.setIsLoading(true));
       const years = getYearsFromDateRange(dateRange);
       console.log(`Fetching Trend data for years ${years}`);
       try {
@@ -37,16 +38,16 @@ const SearchForm = (props) => {
 
         // fetch years, staggered to avoid rate limits
         const trendData = await Promise.all(years.map(async (year, index) => {
-          await new Promise((res) => setTimeout(res, 1000 * (index + 1)));
+          await new Promise((res) => setTimeout(res, 600 * (index + 1)));
           const data = await eUtilsClient.queryESearch('pubmed', `${searchTerm}+AND+${year}`, 365, 'pdat', 100000, 'Count');
           return Promise.resolve({ year, count: Number(data.esearchresult.count) });
         }));
-        console.log(trendData);
 
-        return dispatch(actions.setTrendData(trendData));
+        dispatch(actions.setTrendData(trendData.sort((a, b) => a.year - b.year)));
       } catch (err) {
         console.log(err);
       }
+      dispatch(actions.setIsLoading(false));
     }
   };
 

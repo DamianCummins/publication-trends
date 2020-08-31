@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Tile,
-
-} from 'carbon-components-react';
+import { Tile } from 'carbon-components-react';
 
 const ChartCard = (props) => {
   const { title, children } = props;

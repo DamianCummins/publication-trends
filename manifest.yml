@@ -1,0 +1,4 @@
+applications:
+    - name: publication-trends
+      buildpack: sdk-for-nodejs
+      command: npm run start:server
