@@ -9,7 +9,7 @@ describe('Trends Page', () => {
     expect(searchElement).toBeInTheDocument();
     const selectElement = getByText(/Date Range/i);
     expect(selectElement).toBeInTheDocument();
-    const chartTitleElement = getByText(/Trends per Year/i);
+    const chartTitleElement = getByText(/Count per Year/i);
     expect(chartTitleElement).toBeInTheDocument();
   });
 });

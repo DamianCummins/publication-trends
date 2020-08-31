@@ -27,9 +27,9 @@ const TrendsPage = () => {
           </p>
         </div>
         <SearchForm dispatch={dispatch} />
-        <ChartCard title="Trends per Year">
+        <ChartCard title="Count per Year">
           {state.isLoading && <Loading withOverlay={false} />}
-          {state.trendData && state.trendData.length > 0
+          {state.trendData && state.trendData.length > 0 && !state.isLoading
               && <BarChart data={state.trendData} />}
         </ChartCard>
       </div>
